@@ -11,27 +11,32 @@ namespace BookStore.Repository
     /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
-        public Task<T> AddAsync(T entity)
+        public Repository()
+        {
+
+        }
+
+        public async Task<T> AddAsync(T entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync()
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(T entity)
+        public async Task<bool> UpdateAsync(T entity)
         {
             throw new System.NotImplementedException();
         }
