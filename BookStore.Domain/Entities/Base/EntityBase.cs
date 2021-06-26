@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookStore.Domain.Entities.Base
+namespace BookStore.Services.Entities.Base
 {
     public abstract class EntityBase
     {

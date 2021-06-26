@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore", "BookStore\BookStore.csproj", "{EAE19288-3DFB-4221-9823-4D78D4D10DBA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Domain", "BookStore.Domain", "{36990EC9-2B51-49A4-8941-58190F06B3D4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Services", "BookStore.Services", "{36990EC9-2B51-49A4-8941-58190F06B3D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Domain", "BookStore.Domain\BookStore.Domain.csproj", "{678053F9-09DC-49CB-9F86-4BF98B0FC82C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Services", "BookStore.Domain\BookStore.Services.csproj", "{678053F9-09DC-49CB-9F86-4BF98B0FC82C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Repository", "BookStore.Repository", "{8CE69238-3FD6-4087-A87E-2FD2BEEE02D4}"
 EndProject

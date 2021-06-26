@@ -1,4 +1,4 @@
-﻿using BookStore.Domain.Interfaces.Repositroy;
+﻿using BookStore.Domain.Interfaces.Repository;
 
 namespace BookStore.Repository
 {

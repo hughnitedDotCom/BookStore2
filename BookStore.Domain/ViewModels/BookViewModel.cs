@@ -1,4 +1,4 @@
-﻿namespace BookStore.Controllers.ViewModels
+﻿namespace BookStore.Services.ViewModels
 {
     public class BookViewModel
     {

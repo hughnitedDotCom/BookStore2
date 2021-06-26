@@ -1,4 +1,4 @@
-﻿using BookStore.Domain.Entities.Base;
+﻿using BookStore.Services.Entities.Base;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,4 +1,4 @@
-﻿namespace BookStore.Repository.Entities
+﻿namespace BookStore.Services.Entities
 {
     public class User
     {
