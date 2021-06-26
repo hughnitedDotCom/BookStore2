@@ -1,8 +1,10 @@
 ﻿using BookStore.Domain.Interfaces.Repository;
 using BookStore.Services.Entities.Base;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace BookStore.Repository
 {
@@ -10,10 +12,8 @@ namespace BookStore.Repository
     /// Generic Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Repository<T> : IRepository<T> where T : BaseEntity, new()
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        //const string dbName = "BookStore.db";
-
         private BookStoreContext _dbContext;
 
         public Repository()
@@ -27,7 +27,9 @@ namespace BookStore.Repository
 
         public async Task<T> AddAsync(T entity)
         {
-           var book = _dbContext.Set<T>().Add(entity);
+            entity.CreateDate = DateTime.Now;
+
+            var book = _dbContext.Set<T>().Add(entity);
 
             await _dbContext.SaveChangesAsync();
 
@@ -36,18 +38,23 @@ namespace BookStore.Repository
 
         public async Task<List<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            return await _dbContext.Set<T>()
+                                   .Where(e => e.IsDeleted == false)
+                                   .ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            var result = await _dbContext.Set<T>().FindAsync(id);
+            var result = await _dbContext.Set<T>()
+                                         .FindAsync(id);
 
-            return result;
+            return !result.IsDeleted ? result : null;
         }
 
         public async Task<int> UpdateAsync(T entity)
         {
+            entity.UpdateDate = DateTime.Now;
+
             _dbContext.Set<T>().Update(entity);
 
             return await _dbContext.SaveChangesAsync();
@@ -55,9 +62,9 @@ namespace BookStore.Repository
 
         public async Task<int> DeleteAsync(T entity)
         {
-            _dbContext.Set<T>().Remove(entity);
+            entity.IsDeleted = true;
 
-            return await _dbContext.SaveChangesAsync();
+            return await UpdateAsync(entity);
         }
     }
 }

@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="BookStoreDb" />
+    <None Remove="BookStoreDb-shm" />
+    <None Remove="BookStoreDb-wal" />
+    <None Remove="Log-20210626_0001.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 

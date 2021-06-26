@@ -2,6 +2,7 @@ using BookStore.CrossCuttingConcerns;
 using BookStore.Domain.Interfaces.Repository;
 using BookStore.Repository;
 using BookStore.Services.Services.BookService;
+using BookStore.Services.Services.SubscriptionService;
 using BookStore.Services.Services.UserService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,17 +25,16 @@ namespace BookStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStore", Version = "v1" });
             });
 
-
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<ILogger, FileLogger>();
         }
 

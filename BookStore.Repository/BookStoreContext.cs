@@ -17,7 +17,6 @@ namespace BookStore.Repository
             optionsBuilder.UseSqlite(connectionString: "FileName=BookStoreDb", (option) => {
                 
                 option.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
-                
             });
         }
     }

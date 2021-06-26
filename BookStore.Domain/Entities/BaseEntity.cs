@@ -14,5 +14,7 @@ namespace BookStore.Services.Entities.Base
 
         public DateTime UpdateDate { get; set; }
 
+        public bool IsDeleted { get; set; }
+
     }
 }

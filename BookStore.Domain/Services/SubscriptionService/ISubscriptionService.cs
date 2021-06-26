@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Services.Services.SubscriptionService
 {
-    interface ISubscriptionService
+    public interface ISubscriptionService
     {
     }
 }

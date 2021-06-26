@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CrossCuttingConcerns\CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\CrossCuttingConcerns\BookStore.CrossCuttingConcerns.csproj" />
   </ItemGroup>
 
 </Project>
