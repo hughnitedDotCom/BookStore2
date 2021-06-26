@@ -24,20 +24,20 @@ namespace BookStore.Services.Services.UserService
             _logger = logger;
         }
 
-        public async Task<UserViewModel> RegisterUserAsync(UserViewModel user)
+        public async Task<UserViewModel> RegisterUserAsync(RegisterRequest request)
         {
-            _logger.LogInformation($"UserService.RegisterUserAsync. User email: {user.EmailAddress}");
+            _logger.LogInformation($"UserService.RegisterUserAsync. User email: {request.EmailAddress}");
 
             var allUsers = await GetAllUsersAsync();
 
-            var existingUser = allUsers.Any(u => u.EmailAddress == user.EmailAddress);
+            var existingUser = allUsers.Any(u => u.EmailAddress == request.EmailAddress);
 
             if (existingUser)
                 throw new Exception("Email already registered");
 
-            var result = await _userRepository.AddAsync(user.ToEntity());
+            var result = await _userRepository.AddAsync(request.ToUser());
 
-            return result.ToViewModel();
+            return result != null ? result.ToViewModel() : null;
         }
 
         public async Task<List<UserViewModel>> GetAllUsersAsync()
@@ -48,7 +48,10 @@ namespace BookStore.Services.Services.UserService
 
             var users = await _userRepository.GetAllAsync();
 
-            users.ForEach(user => usersView.Add(user.ToViewModel()));
+            if (users != null && users.Count > 0)
+            {
+                users.ForEach(user => usersView.Add(user.ToViewModel()));
+            }
 
             return usersView;
         }
@@ -59,7 +62,7 @@ namespace BookStore.Services.Services.UserService
 
             var user = await _userRepository.GetByIdAsync(id);
 
-            return user.ToViewModel();
+            return user != null ? user.ToViewModel() : null;
         }
     }
 }

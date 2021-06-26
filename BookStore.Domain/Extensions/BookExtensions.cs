@@ -24,6 +24,7 @@ namespace BookStore.Services.Extensions
         {
             return new Book
             {  
+                Id = book.BookId,
                 Name = book.Name,
                 Text = book.Text,
                 PurchasePrice = book.PurchasePrice

@@ -10,8 +10,7 @@ namespace BookStore.Services.Extensions
         {
             return new SubscriptionViewModel
             {
-                Book = subscription.Book.ToViewModel(),
-                User = subscription.User.ToViewModel()
+               
             };
         }
 

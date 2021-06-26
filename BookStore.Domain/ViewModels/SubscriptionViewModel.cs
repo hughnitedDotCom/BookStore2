@@ -8,9 +8,9 @@
             User = new UserViewModel();
         }
 
-        public virtual BookViewModel Book { get; set; }
+        public BookViewModel Book { get; set; }
 
-        public virtual UserViewModel User { get; set; }
+        public UserViewModel User { get; set; }
 
     }
 }

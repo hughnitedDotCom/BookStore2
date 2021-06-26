@@ -19,5 +19,23 @@ namespace BookStore.Repository
                 option.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
             });
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Subscription>()
+            //    .HasKey(sub => new { sub.UserId, sub.BookId });
+
+            modelBuilder.Entity<Subscription>()
+                 .HasIndex(s => new { s.UserId, s.BookId })
+                 .IsUnique(true);
+            modelBuilder.Entity<Subscription>()
+                .HasOne(u => u.User)
+                .WithMany(sub => sub.Subscriptions)
+                .HasForeignKey(u => u.UserId);
+            modelBuilder.Entity<Subscription>()
+                .HasOne(b => b.Book)
+                .WithMany(sub => sub.Subscriptions)
+                .HasForeignKey(b => b.BookId);
+        }
     }
 }

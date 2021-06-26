@@ -39,8 +39,11 @@ namespace BookStore.Services.Services.BookService
 
             var books = await _bookRepository.GetAllAsync();
 
-            books.ForEach(book => booksView.Add(book.ToViewModel()));
-
+            if(books != null && books.Count > 0)
+            {
+                books.ForEach(book => booksView.Add(book.ToViewModel()));
+            }
+            
             return booksView;
         }
 
@@ -50,7 +53,7 @@ namespace BookStore.Services.Services.BookService
 
             var book = await _bookRepository.GetByIdAsync(id);
 
-            return book.ToViewModel();
+            return book != null ? book.ToViewModel() : null;
         }
 
         public async Task<BookViewModel> AddBookAsync(BookViewModel book)
@@ -59,7 +62,7 @@ namespace BookStore.Services.Services.BookService
 
              var result = await _bookRepository.AddAsync(book.ToEntity());
 
-            return result.ToViewModel();
+            return result != null ? result.ToViewModel() : null;
         }
 
         #endregion

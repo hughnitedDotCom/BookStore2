@@ -32,22 +32,25 @@ namespace BookStore.API.Controllers
         [HttpPost("Register")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(UserViewModel))]
-        public async Task<ActionResult> RegisterUserAsync([FromBody] UserViewModel user)
+        [ProducesResponseType(StatusCodes.Status400BadRequest, StatusCode = 400, Type = typeof(BadRequestObjectResult))]
+        public async Task<ActionResult> RegisterUserAsync([FromBody] RegisterRequest request)
         {
+            UserViewModel user;
+
             try
             {
-                if (user == null || string.IsNullOrEmpty(user.EmailAddress) ||
-                    string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.Password))
+                if (request == null || string.IsNullOrEmpty(request.EmailAddress) ||
+                    string.IsNullOrEmpty(request.FirstName) || string.IsNullOrEmpty(request.Password))
                     throw new Exception("Invalid user details");
 
-                user = await _userService.RegisterUserAsync(user);
+                user = await _userService.RegisterUserAsync(request);
 
-                return Ok(user);
+                return Ok(request);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"RegisterUserAsync : {ex.Message}");
-                return BadRequest(ex);
+                _logger.LogError($"RegisterUserAsync : {ex}");
+                return BadRequest(ex.Message);
             }
         }
     }

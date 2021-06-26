@@ -10,6 +10,7 @@ namespace BookStore.Services.Extensions
         {
             return new UserViewModel
             {
+              UserId = user.Id, 
               FirstName = user.FirstName,
               LastName = user.LastName,
               EmailAddress = user.EmailAddress,
@@ -21,6 +22,7 @@ namespace BookStore.Services.Extensions
         {
             return new User
             {
+                Id = user.UserId,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 EmailAddress = user.EmailAddress,

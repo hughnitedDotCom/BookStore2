@@ -59,7 +59,9 @@ namespace BookStore.Repository
             var result = await _dbContext.Set<T>()
                                          .FindAsync(id);
 
-            return !result.IsDeleted ? result : null;
+            var re = result != null ? (!result.IsDeleted ? result : null) : null;
+
+            return re;
         }
 
         public async Task<int> UpdateAsync(T entity)

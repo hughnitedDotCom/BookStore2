@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookStore.API.Controllers
@@ -51,7 +50,7 @@ namespace BookStore.API.Controllers
             catch(Exception ex)
             {
                 _logger.LogError($"GetBookAsync for bookId - {bookId} : {ex.Message}");
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -74,8 +73,8 @@ namespace BookStore.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"GetAllBooksAsync : {ex.Message}");
-                return BadRequest(ex);
+                _logger.LogError($"GetAllBooksAsync : {ex}");
+                return BadRequest(ex.Message);
             }
         }
 
@@ -102,8 +101,8 @@ namespace BookStore.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"AddBookAsync : {ex.Message}");
-                return BadRequest(ex);
+                _logger.LogError($"AddBookAsync : {ex}");
+                return BadRequest(ex.Message);
             }
         }
     }

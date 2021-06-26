@@ -1,9 +1,7 @@
 ﻿using BookStore.Services.Entities.Base;
-using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.Services.Entities
 {
@@ -11,21 +9,15 @@ namespace BookStore.Services.Entities
     /// Subscription Entity
     /// </summary>
     public class Subscription : BaseEntity
-    {
-        public Subscription()
-        {
-            Book = new Book();
-            User = new User();
-        }
-
+    {   
         public int BookId { get; set; }
 
         public int UserId { get; set; }
-
-        public virtual Book Book { get; set; }
+    
+        public bool IsActive { get; set; }
 
         public virtual User User { get; set; }
 
-        public bool IsActive { get; set; }
+        public virtual Book Book { get; set; }
     }
 }

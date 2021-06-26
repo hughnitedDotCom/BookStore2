@@ -10,6 +10,6 @@ namespace BookStore.Services.Services.UserService
 
         Task<List<UserViewModel>> GetAllUsersAsync();
 
-        Task<UserViewModel> RegisterUserAsync(UserViewModel user);
+        Task<UserViewModel> RegisterUserAsync(RegisterRequest user);
     }
 }
