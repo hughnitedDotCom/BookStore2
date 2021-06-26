@@ -12,6 +12,12 @@ namespace BookStore.Services.Entities
     /// </summary>
     public class Subscription : BaseEntity
     {
+        public Subscription()
+        {
+            Book = new Book();
+            User = new User();
+        }
+
         public int BookId { get; set; }
 
         public int UserId { get; set; }

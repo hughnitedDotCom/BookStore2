@@ -1,5 +1,7 @@
 ﻿using BookStore.Domain.Interfaces.Repository;
 using BookStore.Services.Entities;
+using BookStore.Services.Extensions;
+using BookStore.Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,43 @@ namespace BookStore.Services.Services.BookService
 {
     public class BookService : IBookService
     {
-        IRepository<Book> _userRepository;
+        #region Private Members
 
-        public BookService(IRepository<Book> userRepository)
+        IRepository<Book> _bookRepository;
+
+        #endregion
+
+        #region Constructors
+        public BookService(IRepository<Book> bookRepository)
         {
-            _userRepository = userRepository;
+            _bookRepository = bookRepository;
         }
+
+        #endregion
+
+        #region Public Methods
+
+        public async Task<List<BookViewModel>> GetAllBooksAsync()
+        {
+            var booksView = new List<BookViewModel>();
+
+            var books = await _bookRepository.GetAllAsync();
+
+            foreach (var book in books)
+            {
+                booksView.Add(book.ToViewModel());
+            }
+
+            return booksView;
+        }
+
+        public async Task<BookViewModel> GetBookAsync(int id)
+        {
+            var book = await _bookRepository.GetByIdAsync(id);
+
+            return book.ToViewModel();
+        }
+
+        #endregion
     }
 }

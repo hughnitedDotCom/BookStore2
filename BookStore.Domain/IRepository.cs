@@ -1,19 +1,20 @@
 ﻿using BookStore.Services.Entities.Base;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookStore.Domain.Interfaces.Repository
 {
     public interface IRepository <T> where T: BaseEntity
     {
-        Task<T> AddAsync(T entity);
+        Task<int> AddAsync(T entity);
 
         Task<T> GetByIdAsync(int id);
 
         Task<List<T>> GetAllAsync();
 
-        Task<bool> UpdateAsync(T entity);
+        Task<int> UpdateAsync(T entity);
 
-        Task<bool> DeleteAsync(int id);
+        Task<int> DeleteAsync(T entity);
     }
 }
