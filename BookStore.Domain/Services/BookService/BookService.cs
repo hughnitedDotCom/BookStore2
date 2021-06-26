@@ -3,6 +3,7 @@ using BookStore.Domain.Interfaces.Repository;
 using BookStore.Services.Entities;
 using BookStore.Services.Extensions;
 using BookStore.Services.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -37,7 +38,8 @@ namespace BookStore.Services.Services.BookService
 
             _logger.LogInformation($"BookService.GetAllBooksAsync. Fetching all books");
 
-            var books = await _bookRepository.GetAllAsync();
+            var books = await _bookRepository.GetAll()
+                                             .ToListAsync();
 
             if(books != null && books.Count > 0)
             {

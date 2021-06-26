@@ -14,6 +14,6 @@ namespace BookStore.Services.ViewModels
 
         public string Password { get; set; }
 
-        public List<SubscriptionViewModel> Subscriptions { get; set; }
+        public List<BookViewModel> BookSubscriptions { get; set; }
     }
 }

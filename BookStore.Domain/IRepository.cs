@@ -1,5 +1,8 @@
 ﻿using BookStore.Services.Entities.Base;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BookStore.Domain.Interfaces.Repository
@@ -12,7 +15,7 @@ namespace BookStore.Domain.Interfaces.Repository
 
         Task<T> GetByIdAsync(int id);
 
-        Task<List<T>> GetAllAsync();
+        IQueryable<T> GetAll();
 
         Task<int> UpdateAsync(T entity);
 

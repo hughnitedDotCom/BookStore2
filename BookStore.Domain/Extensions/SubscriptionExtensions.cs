@@ -10,15 +10,24 @@ namespace BookStore.Services.Extensions
         {
             return new SubscriptionViewModel
             {
-               
+                Book = subscription.Book.ToViewModel(),
+
+                ////stop toViewModel recursive mapping on User
+                User = new UserViewModel
+                {
+                    UserId = subscription.UserId,
+                    FirstName = subscription.User.FirstName,
+                    LastName = subscription.User.LastName,
+                    EmailAddress = subscription.User.EmailAddress
+                }
             };
         }
 
-        public static IEnumerable<SubscriptionViewModel> ToViewModelEnumerable(this IEnumerable<Subscription> subscriptions)
-        {
+        public static IEnumerable<SubscriptionViewModel> ToViewModelList(this ICollection<Subscription> subscriptions)
+        {  
             foreach (var sub in subscriptions)
             {
-                 yield return sub.ToViewModel();
+               yield return sub.ToViewModel();
             }
         }  
     }

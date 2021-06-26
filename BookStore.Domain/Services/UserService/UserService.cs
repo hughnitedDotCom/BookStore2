@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Services.Services.UserService
 {
@@ -46,7 +47,8 @@ namespace BookStore.Services.Services.UserService
 
             _logger.LogInformation($"UserService.GetAllUsersAsync. Fetching all users");
 
-            var users = await _userRepository.GetAllAsync();
+            var users = await _userRepository.GetAll()
+                                             .ToListAsync();
 
             if (users != null && users.Count > 0)
             {

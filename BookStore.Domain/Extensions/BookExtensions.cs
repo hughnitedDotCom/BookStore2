@@ -1,5 +1,6 @@
 ﻿using BookStore.Services.Entities;
 using BookStore.Services.ViewModels;
+using System.Collections.Generic;
 
 namespace BookStore.Services.Extensions
 {
@@ -19,7 +20,6 @@ namespace BookStore.Services.Extensions
             };
         }
 
-
         public static Book ToEntity(this BookViewModel book)
         {
             return new Book
@@ -29,6 +29,14 @@ namespace BookStore.Services.Extensions
                 Text = book.Text,
                 PurchasePrice = book.PurchasePrice
             };
+        }
+
+        public static IEnumerable<BookViewModel> ToViewModelList(this IEnumerable<Book> books)
+        {   
+            foreach (var book in books)
+            {
+                yield return book.ToViewModel();
+            }
         }
     }
 }

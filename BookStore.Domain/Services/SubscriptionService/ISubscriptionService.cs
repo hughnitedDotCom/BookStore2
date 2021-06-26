@@ -10,5 +10,7 @@ namespace BookStore.Services.Services.SubscriptionService
 
         Task<List<SubscriptionViewModel>> SubscribeToBooksAsync(UserViewModel user, List<BookViewModel> books);
 
+        Task<List<SubscriptionViewModel>> GetSubscriptionsAsync(int userId);
+
     }
 }

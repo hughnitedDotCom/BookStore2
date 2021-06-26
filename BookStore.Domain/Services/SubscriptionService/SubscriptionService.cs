@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStore.Services.Extensions;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Services.Services.SubscriptionService
 {
@@ -77,7 +78,19 @@ namespace BookStore.Services.Services.SubscriptionService
             
             var result = await _subscriptionRepository.AddRangeAsync(subscriptions);
 
-            return result != null ? result.ToViewModelEnumerable()
+            return result != null ? result.ToViewModelList()
+                                          .ToList() : null;
+        }
+
+        public async Task<List<SubscriptionViewModel>> GetSubscriptionsAsync(int userId)
+        {
+            _logger.LogInformation($"SubscriptionService.GetSubscriptionsAsync. Fetching for userId: {userId}");
+
+            var subscriptions = await _subscriptionRepository.GetAll()
+                                                             .Where(sub => sub.UserId == userId)
+                                                             .ToListAsync();
+
+            return subscriptions != null ? subscriptions.ToViewModelList()
                                           .ToList() : null;
         }
 

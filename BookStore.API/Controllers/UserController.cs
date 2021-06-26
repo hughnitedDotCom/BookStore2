@@ -53,5 +53,33 @@ namespace BookStore.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Get User
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("{userId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(UserViewModel))]
+        public async Task<ActionResult> GetUserAsync(int userId)
+        {
+            UserViewModel user;
+
+            try
+            {
+                if (userId < 0)
+                    throw new Exception("UserId must be a positive integer");
+
+                user = await _userService.GetUserAsync(userId);
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"GetUserAsync for userId - {userId} : {ex}");
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

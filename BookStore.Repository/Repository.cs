@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace BookStore.Repository
 {
@@ -22,6 +23,12 @@ namespace BookStore.Repository
             {
                 _dbContext = new BookStoreContext();
                 _dbContext.Database.EnsureCreatedAsync();
+
+                //context remembers eager loads for future calls
+                _dbContext.Users
+                          .Include(s => s.Subscriptions)
+                          .ThenInclude(b => b.Book)
+                          .ToList();
             }
         }           
 
@@ -47,11 +54,11 @@ namespace BookStore.Repository
             return entities;
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public IQueryable<T> GetAll()
         {
-            return await _dbContext.Set<T>()
-                                   .Where(e => e.IsDeleted == false)
-                                   .ToListAsync();
+            return _dbContext.Set<T>()
+                             .Where(e => e.IsDeleted == false)
+                             .AsQueryable();
         }
 
         public async Task<T> GetByIdAsync(int id)

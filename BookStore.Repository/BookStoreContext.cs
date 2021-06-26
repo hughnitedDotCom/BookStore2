@@ -19,7 +19,6 @@ namespace BookStore.Repository
                 option.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
             });
 
-            optionsBuilder.Options.
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

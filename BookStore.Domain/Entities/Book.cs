@@ -19,6 +19,6 @@ namespace BookStore.Services.Entities
 
         public double PurchasePrice { get; set; }
 
-        public virtual List<Subscription> Subscriptions { get; set; }
+        public ICollection<Subscription> Subscriptions { get; set; }
     }
 }

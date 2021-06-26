@@ -49,7 +49,7 @@ namespace BookStore.API.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError($"GetBookAsync for bookId - {bookId} : {ex.Message}");
+                _logger.LogError($"GetBookAsync for bookId - {bookId} : {ex}");
                 return BadRequest(ex.Message);
             }
         }

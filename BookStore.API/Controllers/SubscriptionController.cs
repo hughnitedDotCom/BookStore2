@@ -61,5 +61,33 @@ namespace BookStore.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Get Subscriptions
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        [HttpGet("GetSubscriptions/{userId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(SubscriptionViewModel))]
+        public async Task<ActionResult> GetSubscriptionsAsync(int userId)
+        {
+            List<SubscriptionViewModel> book;
+
+            try
+            {
+                if (userId < 0)
+                    throw new Exception("BookId must be a positive integer");
+
+                book = await _subscriptionService.GetSubscriptionsAsync(userId);
+
+                return Ok(book);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"GetSubscriptionsAsync for userId - {userId} : {ex}");
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

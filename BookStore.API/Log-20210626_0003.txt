@@ -1,0 +1,10 @@
+﻿2021-06-27 00:47:37.816 +02:00 [Information] SubscriptionService.GetSubscriptionsAsync. Fetching for userId: 1
+2021-06-27 00:50:16.849 +02:00 [Information] UserService.GetUserAsync. Fetching user id: 1
+2021-06-27 01:01:42.280 +02:00 [Information] UserService.GetUserAsync. Fetching user id: 1
+2021-06-27 01:02:09.104 +02:00 [Error] GetUserAsync for userId - 1 : System.InvalidCastException: Unable to cast object of type '<ToViewModelList>d__2' to type 'System.Collections.Generic.List`1[BookStore.Services.ViewModels.BookViewModel]'.
+   at BookStore.Services.Extensions.UserExtensions.ToViewModel(User user) in C:\Users\p02610\source\repos\POCs\BookStore\BookStore.Domain\Extensions\UserExtensions.cs:line 12
+   at BookStore.Services.Services.UserService.UserService.GetUserAsync(Int32 id) in C:\Users\p02610\source\repos\POCs\BookStore\BookStore.Domain\Services\UserService\UserService.cs:line 67
+   at BookStore.API.Controllers.UserController.GetUserAsync(Int32 userId) in C:\Users\p02610\source\repos\POCs\BookStore\BookStore.API\Controllers\UserController.cs:line 74
+2021-06-27 01:02:15.296 +02:00 [Information] UserService.GetUserAsync. Fetching user id: 1
+2021-06-27 01:03:18.163 +02:00 [Information] UserService.GetUserAsync. Fetching user id: 1
+2021-06-27 01:04:59.046 +02:00 [Information] UserService.GetUserAsync. Fetching user id: 1
