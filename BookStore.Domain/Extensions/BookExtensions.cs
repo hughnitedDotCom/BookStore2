@@ -12,6 +12,18 @@ namespace BookStore.Services.Extensions
         {
             return new BookViewModel
             {
+                BookId = book.Id,
+                Name = book.Name,
+                Text = book.Text,
+                PurchasePrice = book.PurchasePrice
+            };
+        }
+
+
+        public static Book ToEntity(this BookViewModel book)
+        {
+            return new Book
+            {  
                 Name = book.Name,
                 Text = book.Text,
                 PurchasePrice = book.PurchasePrice

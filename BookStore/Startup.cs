@@ -1,5 +1,6 @@
 using BookStore.CrossCuttingConcerns;
 using BookStore.Domain.Interfaces.Repository;
+using BookStore.Repository;
 using BookStore.Services.Services.BookService;
 using BookStore.Services.Services.UserService;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,7 @@ namespace BookStore
             });
 
 
-            services.AddScoped(typeof(IRepository<>), typeof(IRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILogger, FileLogger>();

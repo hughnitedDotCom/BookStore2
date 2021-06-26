@@ -9,5 +9,7 @@ namespace BookStore.Services.Services.BookService
         Task<BookViewModel> GetBookAsync(int id);
 
         Task<List<BookViewModel>> GetAllBooksAsync();
+
+        Task<BookViewModel> AddBookAsync(BookViewModel book);
     }
 }

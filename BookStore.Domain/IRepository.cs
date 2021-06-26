@@ -7,7 +7,7 @@ namespace BookStore.Domain.Interfaces.Repository
 {
     public interface IRepository <T> where T: BaseEntity
     {
-        Task<int> AddAsync(T entity);
+        Task<T> AddAsync(T entity);
 
         Task<T> GetByIdAsync(int id);
 

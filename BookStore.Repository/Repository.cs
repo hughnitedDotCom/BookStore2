@@ -25,11 +25,13 @@ namespace BookStore.Repository
             }
         }           
 
-        public async Task<int> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            _dbContext.Set<T>().Add(entity);
+           var book = _dbContext.Set<T>().Add(entity);
 
-            return await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
+
+            return book.Entity;
         }
 
         public async Task<List<T>> GetAllAsync()
