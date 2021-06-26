@@ -1,4 +1,5 @@
-﻿using BookStore.Domain.Interfaces.Repository;
+﻿using BookStore.CrossCuttingConcerns;
+using BookStore.Domain.Interfaces.Repository;
 using BookStore.Services.Entities;
 using BookStore.Services.Extensions;
 using BookStore.Services.ViewModels;
@@ -15,13 +16,15 @@ namespace BookStore.Services.Services.BookService
         #region Private Members
 
         IRepository<Book> _bookRepository;
+        ILogger _logger; 
 
         #endregion
 
         #region Constructors
-        public BookService(IRepository<Book> bookRepository)
+        public BookService(IRepository<Book> bookRepository, ILogger logger)
         {
             _bookRepository = bookRepository;
+            _logger = logger;
         }
 
         #endregion

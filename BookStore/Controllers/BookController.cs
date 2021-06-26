@@ -1,4 +1,7 @@
-﻿using BookStore.Services.Services.BookService;
+﻿using BookStore.CrossCuttingConcerns;
+using BookStore.Services.Services.BookService;
+using BookStore.Services.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,18 +10,73 @@ using System.Threading.Tasks;
 
 namespace BookStore.API.Controllers
 {
+    /// <summary>
+    /// Book Controller
+    /// </summary>
+    [ApiController]
+    [Produces("application/json")]
+    [Route("api/Book")]
     public class BookController : Controller
     {
         private IBookService _bookService;
+        private ILogger _logger;
 
-        public BookController(IBookService bookService)
+        public BookController(IBookService bookService, ILogger logger)
         {
             _bookService = bookService;
+            _logger = logger;
         }
 
-        public IActionResult Index()
+        /// <summary>
+        /// Get Book
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        [HttpGet("{bookId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(BookViewModel))]
+        public async Task<ActionResult> GetBookAsync(int bookId)
         {
-            return View();
+            BookViewModel book;
+
+            try
+            {
+                if (bookId < 0)
+                    throw new Exception("BookId must be a positive integer");
+
+                book = await _bookService.GetBookAsync(bookId);
+
+                return Ok(book);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"GetBookAsync for bookId - {bookId} : {ex.Message}");
+                return BadRequest(ex);
+            }
+        }
+
+        /// <summary>
+        /// Get Books
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(List<BookViewModel>))]
+        public async Task<ActionResult> GetAllBooksAsync()
+        {
+            List<BookViewModel> books;
+
+            try
+            {
+                books = await _bookService.GetAllBooksAsync();
+
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"GetAllBooksAsync : {ex.Message}");
+                return BadRequest(ex);
+            }
         }
     }
 }
