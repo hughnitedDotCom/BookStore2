@@ -1,6 +1,6 @@
-﻿namespace BookStore.Repository.Entities
+﻿namespace BookStore.Controllers.ViewModels
 {
-    public class User
+    public class UserViewModel
     {
         public string FirstName { get; set; }
 
