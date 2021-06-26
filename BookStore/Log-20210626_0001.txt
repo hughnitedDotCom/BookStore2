@@ -1,0 +1,3 @@
+﻿2021-06-26 14:31:25.078 +02:00 [Information] BookService.AddBookAsync. Adding book title: Adventures of Huey Banks
+2021-06-26 14:41:12.479 +02:00 [Information] BookService.GetAllBooksAsync. Fetching all books
+2021-06-26 14:43:26.275 +02:00 [Information] BookService.GetBookAsync. Fetching book id: 1

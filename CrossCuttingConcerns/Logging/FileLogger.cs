@@ -8,13 +8,16 @@ namespace BookStore.CrossCuttingConcerns
     {
         Serilog.Core.Logger _fileLogger;
 
-        private string logErrorPath = Directory.GetCurrentDirectory();
-
+        private string directory = Directory.GetCurrentDirectory();
+        
         public FileLogger()
         {
-            new LoggerConfiguration()
-                .WriteTo.RollingFile(logErrorPath, fileSizeLimitBytes: 1024 * 1024)
-                .CreateLogger();
+            string logErrorPath = $"{directory}/Log.txt";
+
+            _fileLogger = new LoggerConfiguration()
+                            .WriteTo
+                            .RollingFile(logErrorPath, fileSizeLimitBytes: 1024 * 1024)
+                            .CreateLogger();
         }
 
         public override void LogDebug(string message)

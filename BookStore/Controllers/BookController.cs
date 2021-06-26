@@ -32,7 +32,7 @@ namespace BookStore.API.Controllers
         /// </summary>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        [HttpGet("{bookId}")]
+        [HttpGet("GetBook/{bookId}")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(BookViewModel))]
         public async Task<ActionResult> GetBookAsync(int bookId)
@@ -59,7 +59,7 @@ namespace BookStore.API.Controllers
         /// Get Books
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("GetAllBooks")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(List<BookViewModel>))]
         public async Task<ActionResult> GetAllBooksAsync()
@@ -75,6 +75,34 @@ namespace BookStore.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"GetAllBooksAsync : {ex.Message}");
+                return BadRequest(ex);
+            }
+        }
+
+        /// <summary>
+        /// Add Book
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("AddBook")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(BookViewModel))]
+        public async Task<ActionResult> AddBookAsync([FromBody] BookViewModel book)
+        {
+            try
+            {
+                if (book == null || string.IsNullOrEmpty(book.Name) || 
+                    string.IsNullOrEmpty(book.Text) || book.PurchasePrice <= 0)
+                    throw new Exception("Invalid book information");
+
+                book.BookId = 0;
+
+                book = await _bookService.AddBookAsync(book);
+
+                return Ok(book);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"AddBookAsync : {ex.Message}");
                 return BadRequest(ex);
             }
         }
