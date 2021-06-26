@@ -26,7 +26,7 @@ namespace BookStore.Services.Services.UserService
 
         public async Task<UserViewModel> RegisterUserAsync(UserViewModel user)
         {
-            _logger.LogInformation($"UserService.AddingAsync. User email: {user.EmailAddress}");
+            _logger.LogInformation($"UserService.RegisterUserAsync. User email: {user.EmailAddress}");
 
             var allUsers = await GetAllUsersAsync();
 
