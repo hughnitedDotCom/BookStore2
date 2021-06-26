@@ -18,6 +18,8 @@ namespace BookStore.Repository
                 
                 option.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
             });
+
+            optionsBuilder.Options.
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,6 +38,11 @@ namespace BookStore.Repository
                 .HasOne(b => b.Book)
                 .WithMany(sub => sub.Subscriptions)
                 .HasForeignKey(b => b.BookId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.Subscriptions)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId);
         }
     }
 }
