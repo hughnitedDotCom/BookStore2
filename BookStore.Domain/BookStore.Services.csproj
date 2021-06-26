@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CrossCuttingConcerns\BookStore.CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\BookStore.CrossCuttingConcerns\BookStore.CrossCuttingConcerns.csproj" />
   </ItemGroup>
 
 </Project>
