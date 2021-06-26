@@ -18,9 +18,9 @@ namespace BookStore.API.Controllers
     [Route("api/Book")]
     public class BookController : Controller
     {
-        private IBookService _bookService;
-        private ILogger _logger;
-
+        private readonly IBookService _bookService;
+        private readonly ILogger _logger;
+        
         public BookController(IBookService bookService, ILogger logger)
         {
             _bookService = bookService;

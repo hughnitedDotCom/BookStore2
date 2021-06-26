@@ -15,9 +15,9 @@ namespace BookStore.Services.Services.BookService
     {
         #region Private Members
 
-        IRepository<Book> _bookRepository;
-        ILogger _logger; 
-
+        readonly IRepository<Book> _bookRepository;
+        readonly ILogger _logger;
+        
         #endregion
 
         #region Constructors
@@ -39,10 +39,7 @@ namespace BookStore.Services.Services.BookService
 
             var books = await _bookRepository.GetAllAsync();
 
-            foreach (var book in books)
-            {
-                booksView.Add(book.ToViewModel());
-            }
+            books.ForEach(book => booksView.Add(book.ToViewModel()));
 
             return booksView;
         }
