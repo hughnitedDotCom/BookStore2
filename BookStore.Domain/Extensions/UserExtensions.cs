@@ -1,5 +1,6 @@
 ﻿using BookStore.Services.Entities;
 using BookStore.Services.ViewModels;
+using System.Linq;
 
 namespace BookStore.Services.Extensions
 {
@@ -11,7 +12,8 @@ namespace BookStore.Services.Extensions
             {
               FirstName = user.FirstName,
               LastName = user.LastName,
-              EmailAddress = user.EmailAddress
+              EmailAddress = user.EmailAddress,
+              Subscriptions = user.Subscriptions.ToViewModelEnumerable().ToList()
             };
         }
 

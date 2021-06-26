@@ -14,7 +14,7 @@ namespace BookStore.Repository
     /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private BookStoreContext _dbContext;
+        readonly BookStoreContext _dbContext;
 
         public Repository()
         {
@@ -34,6 +34,17 @@ namespace BookStore.Repository
             await _dbContext.SaveChangesAsync();
 
             return book.Entity;
+        }
+
+        public async Task<List<T>> AddRangeAsync(List<T> entities)
+        {
+            entities.ForEach(e => e.CreateDate = DateTime.Now);
+
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+
+            var result = await _dbContext.SaveChangesAsync();
+
+            return entities;
         }
 
         public async Task<List<T>> GetAllAsync()

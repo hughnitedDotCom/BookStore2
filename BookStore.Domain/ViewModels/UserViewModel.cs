@@ -1,4 +1,6 @@
-﻿namespace BookStore.Services.ViewModels
+﻿using System.Collections.Generic;
+
+namespace BookStore.Services.ViewModels
 {
     public class UserViewModel
     {
@@ -9,5 +11,7 @@
         public string EmailAddress { get; set; }
 
         public string Password { get; set; }
+
+        public List<SubscriptionViewModel> Subscriptions { get; set; }
     }
 }
