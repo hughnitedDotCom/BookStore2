@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore", "BookStore\BookStore.csproj", "{EAE19288-3DFB-4221-9823-4D78D4D10DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore", "BookStore\BookStore.csproj", "{EAE19288-3DFB-4221-9823-4D78D4D10DBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Domain", "BookStore.Domain", "{36990EC9-2B51-49A4-8941-58190F06B3D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Domain", "BookStore.Domain\BookStore.Domain.csproj", "{678053F9-09DC-49CB-9F86-4BF98B0FC82C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Repository", "BookStore.Repository", "{8CE69238-3FD6-4087-A87E-2FD2BEEE02D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Repository", "BookStore.Repository\BookStore.Repository.csproj", "{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,21 @@ Global
 		{EAE19288-3DFB-4221-9823-4D78D4D10DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAE19288-3DFB-4221-9823-4D78D4D10DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAE19288-3DFB-4221-9823-4D78D4D10DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{678053F9-09DC-49CB-9F86-4BF98B0FC82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{678053F9-09DC-49CB-9F86-4BF98B0FC82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{678053F9-09DC-49CB-9F86-4BF98B0FC82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{678053F9-09DC-49CB-9F86-4BF98B0FC82C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{678053F9-09DC-49CB-9F86-4BF98B0FC82C} = {36990EC9-2B51-49A4-8941-58190F06B3D4}
+		{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B} = {8CE69238-3FD6-4087-A87E-2FD2BEEE02D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F540106-D2DE-4166-BD16-4CFC1E21CE12}
