@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore", "BookStore\BookStore.csproj", "{EAE19288-3DFB-4221-9823-4D78D4D10DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.API", "BookStore\BookStore.API.csproj", "{EAE19288-3DFB-4221-9823-4D78D4D10DBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Services", "BookStore.Services", "{36990EC9-2B51-49A4-8941-58190F06B3D4}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.Repository", "BookStore.Repository", "{8CE69238-3FD6-4087-A87E-2FD2BEEE02D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Repository", "BookStore.Repository\BookStore.Repository.csproj", "{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.API", "BookStore.API", "{35A8AD52-51AF-40E1-A96E-21BF02A60471}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.UI", "BookStore.UI", "{97AC7B21-440B-4323-AF3F-339C1BFA34DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{EAE19288-3DFB-4221-9823-4D78D4D10DBA} = {35A8AD52-51AF-40E1-A96E-21BF02A60471}
 		{678053F9-09DC-49CB-9F86-4BF98B0FC82C} = {36990EC9-2B51-49A4-8941-58190F06B3D4}
 		{F8C9AEF6-E8F5-4B49-B4FF-8F7B5DFFB01B} = {8CE69238-3FD6-4087-A87E-2FD2BEEE02D4}
 	EndGlobalSection

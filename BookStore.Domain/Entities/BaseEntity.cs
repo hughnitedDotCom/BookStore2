@@ -2,7 +2,7 @@
 
 namespace BookStore.Services.Entities.Base
 {
-    public abstract class EntityBase
+    public abstract class BaseEntity
     {
         public int Id { get; set; }
 

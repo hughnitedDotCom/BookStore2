@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.Interfaces.Repository
 {
-    public interface IRepository <T> where T: EntityBase
+    public interface IRepository <T> where T: BaseEntity
     {
         Task<T> AddAsync(T entity);
 

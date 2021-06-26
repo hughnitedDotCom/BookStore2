@@ -1,6 +1,11 @@
-﻿namespace BookStore.Services.Entities
+﻿using BookStore.Services.Entities.Base;
+
+namespace BookStore.Services.Entities
 {
-    public class Book
+    /// <summary>
+    /// Book Entity
+    /// </summary>
+    public class Book : BaseEntity
     {
         public string Name { get; set; }
 
