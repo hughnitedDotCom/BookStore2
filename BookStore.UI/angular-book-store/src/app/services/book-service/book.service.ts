@@ -28,12 +28,6 @@ export class BookService {
   }
 
 
-
-
-
-
-
-
   getColumns() {
     return [
       {

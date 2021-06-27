@@ -45,7 +45,7 @@ namespace BookStore.API.Controllers
 
                 user = await _userService.RegisterUserAsync(request);
 
-                return Ok(request);
+                return Ok(user);
             }
             catch (Exception ex)
             {
