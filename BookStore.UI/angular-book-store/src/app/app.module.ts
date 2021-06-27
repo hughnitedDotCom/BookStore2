@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,13 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatPaginatorModule, 
     MatProgressSpinnerModule, 
     MatSortModule, 
-    MatTableModule
+    MatTableModule,
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+        
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

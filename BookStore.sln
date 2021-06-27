@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Repository", "Boo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.API", "BookStore.API", "{35A8AD52-51AF-40E1-A96E-21BF02A60471}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.UI", "BookStore.UI", "{97AC7B21-440B-4323-AF3F-339C1BFA34DA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore.CrossCuttingConcerns", "BookStore.CrossCuttingConcerns", "{FE9206E7-2DF5-41F2-9104-F2BB8B596287}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.API", "BookStore.API\BookStore.API.csproj", "{272677E7-6BEB-4DA3-9BFB-83777722F76A}"
