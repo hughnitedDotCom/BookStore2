@@ -22,6 +22,7 @@ export class BooksComponent implements OnInit {
 
   getBooks(): void{
     this.books = this.bookService.getBooks();
+
   }
 
 }
