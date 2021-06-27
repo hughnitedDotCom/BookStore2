@@ -15,8 +15,8 @@ namespace BookStore.CrossCuttingConcerns
         {
             string logErrorPath = $"{directory}/Log.txt";
 
-            //if (File.Exists(logErrorPath))
-            //    File.Delete(logErrorPath);
+            if (File.Exists(logErrorPath))
+                File.Delete(logErrorPath);
 
             _fileLogger = new LoggerConfiguration()
                             .WriteTo

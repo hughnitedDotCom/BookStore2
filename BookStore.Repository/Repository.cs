@@ -15,9 +15,9 @@ namespace BookStore.Repository
     /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        readonly DbContext _dbContext;
+        readonly BookStoreContext _dbContext;
 
-        public Repository(DbContext dbContext)
+        public Repository(BookStoreContext dbContext)
         {
             _dbContext = dbContext ?? new BookStoreContext();
 
@@ -59,9 +59,6 @@ namespace BookStore.Repository
             var result = await _dbContext.Set<T>()
                                          .Where(ids)
                                          .FirstOrDefaultAsync();
-
-            if (result != null)
-                _dbContext.Entry(result).Reload();
 
             return result;
         }

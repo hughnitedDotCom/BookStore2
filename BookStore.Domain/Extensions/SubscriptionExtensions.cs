@@ -33,7 +33,6 @@ namespace BookStore.Services.Extensions
             }
         }
 
-
         public static Subscription ToEntity(this SubscriptionViewModel subscription)
         {
             return new Subscription
