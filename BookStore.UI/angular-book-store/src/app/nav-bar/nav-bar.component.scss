@@ -3,7 +3,7 @@
     .navbar{
         display: flex;
         justify-content: space-between;
-        margin: 0 2em 0 2em;
+        margin: 0 2.2em 0 2em;
         
         h1{
             padding: .3em;
@@ -18,7 +18,7 @@
         .menu{
             
             margin-top: 2em;
-            border-top: 1px dotted darkgray;
+            border-top: .01em dotted darkgray;
             
             ul li{
                 
@@ -33,6 +33,7 @@
     
                     &:hover{
                         color: white;
+                        cursor: pointer;
                     }
                 }
             }
