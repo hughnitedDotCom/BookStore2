@@ -6,7 +6,9 @@ namespace BookStore.Services.Services.SubscriptionService
 {
     public interface ISubscriptionService
     {
-        Task<UserViewModel> SubscribeToBookAsync(int userId, int bookId);
+        Task<SubscriptionViewModel> SubscribeToBookAsync(int userId, int bookId);
+
+        Task<int> UnsubscribeFromBookAsync(int userId, int bookId);
 
         Task<List<SubscriptionViewModel>> SubscribeToBooksAsync(UserViewModel user, List<BookViewModel> books);
 

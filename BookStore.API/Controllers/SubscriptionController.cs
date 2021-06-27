@@ -32,15 +32,15 @@ namespace BookStore.API.Controllers
         }
 
         /// <summary>
-        /// Subscribe to Book User
+        /// Subscribe to Book
         /// </summary>
         /// <returns></returns>
         [HttpPost("{userId}/Subscribe/{bookId}")]
         [Produces("application/json")]
-        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(UserViewModel))]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(SubscriptionViewModel))]
         public async Task<ActionResult> SubscribeAsync(int userId, int bookId)
         {
-            UserViewModel subscription;
+            SubscriptionViewModel subscription;
 
             try
             {
@@ -58,6 +58,32 @@ namespace BookStore.API.Controllers
                 var message = ex.InnerException.Message.Contains(sqlLiteUniqueConstraintExceptionCode) ? "Already subscribed to this book" : ex.Message;
 
                 return BadRequest(message);
+            }
+        }
+
+        /// <summary>
+        /// Unsubscribe from Book
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("{userId}/Unsubscribe/{bookId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(int))]
+        public async Task<ActionResult> UnsubscribeAsync(int userId, int bookId)
+        {
+            try
+            {
+                if (userId <= 0 || bookId <= 0)
+                    throw new Exception("Invalid subscription details");
+
+                var result = await _subscriptionService.UnsubscribeFromBookAsync(userId, bookId);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"UnsubscribeAsync : {ex}");
+
+                return BadRequest(ex.Message);
             }
         }
 

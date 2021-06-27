@@ -14,6 +14,9 @@ namespace BookStore.CrossCuttingConcerns
         {
             string logErrorPath = $"{directory}/Log.txt";
 
+            //if (File.Exists(logErrorPath))
+            //    File.Delete(logErrorPath);
+
             _fileLogger = new LoggerConfiguration()
                             .WriteTo
                             .RollingFile(logErrorPath, fileSizeLimitBytes: 1024 * 1024)

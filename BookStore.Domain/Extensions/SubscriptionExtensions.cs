@@ -10,6 +10,9 @@ namespace BookStore.Services.Extensions
         {
             return new SubscriptionViewModel
             {
+                Id = subscription.Id,
+                UserId = subscription.UserId,
+                BookId = subscription.BookId,
                 Book = subscription.Book.ToViewModel(),
 
                 ////stop toViewModel recursive mapping on User
@@ -29,6 +32,17 @@ namespace BookStore.Services.Extensions
             {
                yield return sub.ToViewModel();
             }
-        }  
+        }
+
+
+        public static Subscription ToEntity(this SubscriptionViewModel subscription)
+        {
+            return new Subscription
+            {
+                Id = subscription.Id,
+                BookId = subscription.BookId,
+                UserId = subscription.UserId
+            };
+        }
     }
 }

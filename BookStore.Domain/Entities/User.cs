@@ -21,6 +21,6 @@ namespace BookStore.Services.Entities
 
         public string Password { get; set; }
 
-        public ICollection<Subscription> Subscriptions { get; set; }
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

@@ -23,12 +23,10 @@ namespace BookStore.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Subscription>()
-            //    .HasKey(sub => new { sub.UserId, sub.BookId });
-
             modelBuilder.Entity<Subscription>()
                  .HasIndex(s => new { s.UserId, s.BookId })
                  .IsUnique(true);
+            
             modelBuilder.Entity<Subscription>()
                 .HasOne(u => u.User)
                 .WithMany(sub => sub.Subscriptions)
@@ -42,6 +40,11 @@ namespace BookStore.Repository
                 .HasMany(a => a.Subscriptions)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.UserId);
+
+            modelBuilder.Entity<Book>()
+               .HasMany(a => a.Subscriptions)
+               .WithOne(a => a.Book)
+               .HasForeignKey(a => a.BookId);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace BookStore.Services.Services.SubscriptionService
             _logger = logger;
         }
 
-        public async Task<UserViewModel> SubscribeToBookAsync(int userId, int bookId)
+        public async Task<SubscriptionViewModel> SubscribeToBookAsync(int userId, int bookId)
         {
             var book = await _bookRepository.GetByIdAsync(bookId);
                 if (book == null) throw new Exception("Book does not exist");
@@ -48,16 +48,30 @@ namespace BookStore.Services.Services.SubscriptionService
             {  
                 BookId = book.Id,
                 UserId = user.Id,
-                IsActive = true
             };
 
             _logger.LogInformation($"SubscriptionService.SubscribeToBookAsync. UserId: {userId}, BookId: {bookId}");
 
-            await _subscriptionRepository.AddAsync(subscription);
+            var sub = await _subscriptionRepository.AddAsync(subscription);
 
-            user = await _userRepository.GetByIdAsync(user.Id);
+            return sub.ToViewModel();
+        }
 
-            return user.ToViewModel();
+        public async Task<int> UnsubscribeFromBookAsync(int userId, int bookId)
+        {
+            var subs = await _subscriptionRepository.GetAll().Where(sub => sub.UserId == userId)
+                                                             .ToListAsync();
+            var subscription = subs.FirstOrDefault(a => a.BookId == bookId);
+
+            if(subscription == null)
+                throw new Exception("Subscription does not exist");
+          
+
+            _logger.LogInformation($"SubscriptionService.UnsubscribeFromBookAsync. UserId: {userId}, BookId: {bookId}");
+
+            var result = await _subscriptionRepository.DeleteAsync(subscription);
+
+            return result;
         }
 
         public async Task<List<SubscriptionViewModel>> SubscribeToBooksAsync(UserViewModel user, List<BookViewModel> books)
@@ -70,7 +84,6 @@ namespace BookStore.Services.Services.SubscriptionService
                 {
                     UserId = user.UserId,
                     BookId = book.BookId,
-                    IsActive = true
                 });
 
                 _logger.LogInformation($"SubscriptionService.SubscribeToBooksAsync. Email: {user.EmailAddress}, Book: {book.Name}");

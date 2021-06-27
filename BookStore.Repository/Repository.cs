@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace BookStore.Repository
 {
@@ -24,23 +23,27 @@ namespace BookStore.Repository
                 _dbContext = new BookStoreContext();
                 _dbContext.Database.EnsureCreatedAsync();
 
-                //context remembers eager loads for future calls
-                _dbContext.Users
-                          .Include(s => s.Subscriptions)
-                          .ThenInclude(b => b.Book)
-                          .ToList();
+                EagerLoadNavgationProperties();
             }
-        }           
+        }
+
+        #region Public Methods
 
         public async Task<T> AddAsync(T entity)
         {
-            entity.CreateDate = DateTime.Now;
+            T result;
 
-            var book = _dbContext.Set<T>().Add(entity);
+            using (var con = new BookStoreContext())
+            {
+                entity.CreateDate = DateTime.Now;
 
-            await _dbContext.SaveChangesAsync();
+               result = _dbContext.Set<T>().Add(entity).Entity;
 
-            return book.Entity;
+                await _dbContext.SaveChangesAsync();
+            }
+               
+
+            return result;
         }
 
         public async Task<List<T>> AddRangeAsync(List<T> entities)
@@ -86,5 +89,31 @@ namespace BookStore.Repository
 
             return await UpdateAsync(entity);
         }
+
+        #endregion
+
+
+        #region Private Methods
+
+        private void EagerLoadNavgationProperties()
+        {
+            //context remembers eager loads for future calls
+            //There is a better approach, too late to refactor
+            _dbContext.Users
+                      .Include(s => s.Subscriptions)
+                      .ThenInclude(b => b.Book)
+                      .FirstOrDefault();
+
+            _dbContext.Subscriptions
+                      .Include(b => b.User)
+                      .Include(u => u.Book)
+                      .FirstOrDefault();
+
+            _dbContext.Books
+                      .Include(s => s.Subscriptions)
+                      .ThenInclude(b => b.User)
+                      .FirstOrDefault();
+        }
+        #endregion
     }
 }
