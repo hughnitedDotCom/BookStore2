@@ -13,7 +13,7 @@ namespace BookStore.Domain.Interfaces.Repository
 
         Task<List<T>> AddRangeAsync(List<T> entities);
 
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(Expression<Func<T, bool>> ids);
 
         IQueryable<T> GetAll();
 

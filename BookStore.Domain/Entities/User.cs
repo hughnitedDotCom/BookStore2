@@ -1,5 +1,7 @@
 ﻿using BookStore.Services.Entities.Base;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Services.Entities
 {
@@ -8,11 +10,6 @@ namespace BookStore.Services.Entities
     /// </summary>
     public class User : BaseEntity
     {
-        public User()
-        {
-            Subscriptions = new List<Subscription>();
-        }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -21,6 +18,6 @@ namespace BookStore.Services.Entities
 
         public string Password { get; set; }
 
-        public virtual ICollection<Subscription> Subscriptions { get; set; }
+        public List<Subscription> Subscriptions { get; set; } = new List<Subscription>();
     }
 }

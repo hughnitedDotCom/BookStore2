@@ -53,7 +53,7 @@ namespace BookStore.Services.Services.BookService
         {
             _logger.LogInformation($"BookService.GetBookAsync. Fetching book id: {id}");
 
-            var book = await _bookRepository.GetByIdAsync(id);
+            var book = await _bookRepository.GetByIdAsync(b => b.Id == id);
 
             return book != null ? book.ToViewModel() : null;
         }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace BookStore.Repository
 {
@@ -14,34 +15,24 @@ namespace BookStore.Repository
     /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        readonly BookStoreContext _dbContext;
+        readonly DbContext _dbContext;
 
-        public Repository()
+        public Repository(DbContext dbContext)
         {
-            if(_dbContext == null)
-            {
-                _dbContext = new BookStoreContext();
-                _dbContext.Database.EnsureCreatedAsync();
+            _dbContext = dbContext ?? new BookStoreContext();
 
-                EagerLoadNavgationProperties();
-            }
+            EagerLoadNavgationProperties();
         }
 
         #region Public Methods
 
         public async Task<T> AddAsync(T entity)
         {
-            T result;
+            entity.CreateDate = DateTime.Now;
 
-            using (var con = new BookStoreContext())
-            {
-                entity.CreateDate = DateTime.Now;
+            var result = _dbContext.Set<T>().Add(entity).Entity;
 
-               result = _dbContext.Set<T>().Add(entity).Entity;
-
-                await _dbContext.SaveChangesAsync();
-            }
-               
+            await _dbContext.SaveChangesAsync();
 
             return result;
         }
@@ -60,18 +51,19 @@ namespace BookStore.Repository
         public IQueryable<T> GetAll()
         {
             return _dbContext.Set<T>()
-                             .Where(e => e.IsDeleted == false)
                              .AsQueryable();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(Expression<Func<T, bool>> ids)
         {
             var result = await _dbContext.Set<T>()
-                                         .FindAsync(id);
+                                         .Where(ids)
+                                         .FirstOrDefaultAsync();
 
-            var re = result != null ? (!result.IsDeleted ? result : null) : null;
+            if (result != null)
+                _dbContext.Entry(result).Reload();
 
-            return re;
+            return result;
         }
 
         public async Task<int> UpdateAsync(T entity)
@@ -85,9 +77,9 @@ namespace BookStore.Repository
 
         public async Task<int> DeleteAsync(T entity)
         {
-            entity.IsDeleted = true;
+            _dbContext.Set<T>().Remove(entity);
 
-            return await UpdateAsync(entity);
+            return await _dbContext.SaveChangesAsync();
         }
 
         #endregion
@@ -98,15 +90,17 @@ namespace BookStore.Repository
         private void EagerLoadNavgationProperties()
         {
             //context remembers eager loads for future calls
-            //There is a better approach, too late to refactor
+            //There is a better approach, design needs to be looked at
+            //Too late to refactor
+            //Project is small enough for this solution for now
             _dbContext.Users
                       .Include(s => s.Subscriptions)
                       .ThenInclude(b => b.Book)
                       .FirstOrDefault();
 
             _dbContext.Subscriptions
-                      .Include(b => b.User)
-                      .Include(u => u.Book)
+                      .Include(b => b.Book)
+                      .Include(u => u.User)
                       .FirstOrDefault();
 
             _dbContext.Books

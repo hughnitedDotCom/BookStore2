@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using BookStore.CrossCutting_dbContextcerns;
+using Serilog;
 using Serilog.Sinks.RollingFileAlternative;
 using System.IO;
 

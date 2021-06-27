@@ -90,7 +90,7 @@ namespace BookStore.API.Controllers
             try
             {
                 if (book == null || string.IsNullOrEmpty(book.Name) || 
-                    string.IsNullOrEmpty(book.Text) || book.PurchasePrice <= 0)
+                    string.IsNullOrEmpty(book.Text) || book.PurchasePrice < 0)
                     throw new Exception("Invalid book information");
 
                 book.BookId = 0;

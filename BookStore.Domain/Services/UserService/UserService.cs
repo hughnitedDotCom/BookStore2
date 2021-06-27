@@ -62,7 +62,7 @@ namespace BookStore.Services.Services.UserService
         {
             _logger.LogInformation($"UserService.GetUserAsync. Fetching user id: {id}");
 
-            var user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByIdAsync(u => u.Id == id);
 
             return user != null ? user.ToViewModel() : null;
         }

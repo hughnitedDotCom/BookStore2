@@ -40,11 +40,19 @@ namespace BookStore
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<ILogger, FileLogger>();
+
+            services.AddEntityFrameworkSqlite()
+                    .AddDbContext<BookStoreContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var context = new BookStoreContext())
+            {
+                context.Database.EnsureCreated();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

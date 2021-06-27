@@ -1,4 +1,6 @@
-﻿namespace BookStore.CrossCuttingConcerns
+﻿using BookStore.CrossCuttingConcerns;
+
+namespace BookStore.CrossCutting_dbContextcerns
 {
     public abstract class AbstractLogger : ILogger
     {
