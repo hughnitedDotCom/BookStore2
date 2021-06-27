@@ -1,6 +1,7 @@
 ﻿using BookStore.CrossCuttingConcerns;
 using BookStore.Services.Services.BookService;
 using BookStore.Services.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +16,7 @@ namespace BookStore.API.Controllers
     [ApiController]
     [Produces("application/json")]
     [Route("api/Book")]
+    [EnableCors("AllowOrigin")]
     public class BookController : Controller
     {
         private readonly IBookService _bookService;

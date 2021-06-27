@@ -58,11 +58,12 @@ namespace BookStore.Services.Services.UserService
             return usersView;
         }
 
-        public async Task<UserViewModel> GetUserAsync(int id)
+        public async Task<UserViewModel> GetUserAsync(string email)
         {
-            _logger.LogInformation($"UserService.GetUserAsync. Fetching user id: {id}");
+            _logger.LogInformation($"UserService.GetUserAsync. Fetching user by email: {email}");
 
-            var user = await _userRepository.GetByIdAsync(u => u.Id == id);
+            var user = await _userRepository.GetAll()
+                                            .FirstOrDefaultAsync(u => u.EmailAddress == email);
 
             return user != null ? user.ToViewModel() : null;
         }

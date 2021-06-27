@@ -1,1 +1,0 @@
-﻿2021-06-27 20:10:00.034 +02:00 [Information] BookService.GetAllBooksAsync. Fetching all books

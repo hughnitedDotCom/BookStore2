@@ -6,7 +6,7 @@ namespace BookStore.Services.Services.UserService
 {
     public interface IUserService
     {
-        Task<UserViewModel> GetUserAsync(int id);
+        Task<UserViewModel> GetUserAsync(string email);
 
         Task<List<UserViewModel>> GetAllUsersAsync();
 

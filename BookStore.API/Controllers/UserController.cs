@@ -59,25 +59,25 @@ namespace BookStore.API.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [HttpGet("{userId}")]
+        [HttpGet("{email}")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK, StatusCode = 200, Type = typeof(UserViewModel))]
-        public async Task<ActionResult> GetUserAsync(int userId)
+        public async Task<ActionResult> GetUserAsync(string email)
         {
             UserViewModel user;
 
             try
             {
-                if (userId < 0)
-                    throw new Exception("UserId must be a positive integer");
+                if (string.IsNullOrEmpty(email))
+                    throw new Exception("Email is required");
 
-                user = await _userService.GetUserAsync(userId);
+                user = await _userService.GetUserAsync(email);
 
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"GetUserAsync for userId - {userId} : {ex}");
+                _logger.LogError($"GetUserAsync for email - {email} : {ex}");
                 return BadRequest(ex.Message);
             }
         }

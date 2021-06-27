@@ -22,6 +22,18 @@ export class BookService {
     return result;
   }
 
+  getBook(bookId: number): Observable<Book>{
+    var result = this.http.get<Book>(`${environment.apiURL}api/Book/GetBook/${bookId}`);
+    return result;
+  }
+
+
+
+
+
+
+
+
   getColumns() {
     return [
       {
