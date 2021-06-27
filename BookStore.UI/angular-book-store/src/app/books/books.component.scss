@@ -3,14 +3,39 @@
 
 .books-table{
 
-    background-color: rgb(243, 242, 237);
+    
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
     mat-header-cell{
-        background: #850117;
+        background: #640c2a;
         color: silver;
         font-size: medium;
         font-weight: 700;
     }
+
+   
+    
   }  
+}
+
+.mat-row:nth-child(even){
+    background-color: rgba(160, 96, 96, 0.05);
+  }
+
+  .mat-row:nth-child(odd){
+    background-color: rgb(243, 237, 237);
+ }
+
+ .mat-table
+{
+  background-color:transparent!important;  
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5em;
+}
+table tr:last-child td /*To remove the last border*/
+{
+  border-bottom:0 solid
 }

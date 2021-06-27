@@ -1,6 +1,7 @@
 ﻿using BookStore.CrossCuttingConcerns;
 using BookStore.Services.Services.SubscriptionService;
 using BookStore.Services.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
@@ -18,6 +19,7 @@ namespace BookStore.API.Controllers
     [ApiController]
     [Produces("application/json")]
     [Route("api/Subscription")]
+    [EnableCors("AllowOrigin")]
     public class SubscriptionController : Controller
     {
         readonly ISubscriptionService _subscriptionService;

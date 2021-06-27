@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angul
 import { first } from 'rxjs/operators';
 import { RegisterService } from '../services/register-service/register.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 //import { AccountService, AlertService } from '@app/_services';
 //import { MustMatch } from '@app/_helpers';
@@ -43,6 +44,8 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
+
+console.log('yo');
 
         // reset alerts on submit
         //this.alertService.clear();
