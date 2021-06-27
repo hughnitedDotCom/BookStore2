@@ -1,0 +1,35 @@
+ <div class="container">
+
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="getBooks()">
+
+        <!-- <ng-container matColumnDef="bookId">
+            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+            <mat-cell *matCellDef="let book">{{book.bookId}}</mat-cell>
+        </ng-container> -->
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let book">{{book.name}}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="text">
+            <mat-header-cell *matHeaderCellDef>Content</mat-header-cell>
+            <mat-cell class="description-cell"
+                      *matCellDef="let lesson">{{book.text}}</mat-cell>
+    
+        </ng-container>
+    
+        <ng-container matColumnDef="purchasePrice">
+            <mat-header-cell *matHeaderCellDef>PurchasePrice</mat-header-cell>
+            <mat-cell class="duration-cell"
+                      *matCellDef="let lesson">{{book.purchasePrice}}</mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    
+    </mat-table>
+ </div>
+
+
