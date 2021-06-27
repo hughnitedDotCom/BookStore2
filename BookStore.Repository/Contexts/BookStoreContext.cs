@@ -1,5 +1,7 @@
-﻿using BookStore.Services.Entities;
+﻿using BookStore.Repository.Seed;
+using BookStore.Services.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection;
 
 namespace BookStore.Repository
@@ -35,6 +37,10 @@ namespace BookStore.Repository
                 .HasOne(b => b.Book)
                 .WithMany(sub => sub.Subscriptions)
                 .HasForeignKey(b => b.BookId);
+
+            modelBuilder.Entity<User>().HasData(BookStoreSeedData.GenerateUsers());
+            modelBuilder.Entity<Book>().HasData(BookStoreSeedData.GenerateBooks());
+            modelBuilder.Entity<Subscription>().HasData(BookStoreSeedData.GenerateSubscriptions());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -15,7 +15,7 @@ namespace BookStore.Repository
     /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        readonly BookStoreContext _dbContext;
+        protected readonly BookStoreContext _dbContext;
 
         public Repository(BookStoreContext dbContext)
         {
@@ -81,14 +81,12 @@ namespace BookStore.Repository
 
         #endregion
 
-
         #region Private Methods
 
         private void EagerLoadNavgationProperties()
         {
             //context remembers eager loads for future calls
-            //There is a better approach, design needs to be looked at
-            //Too late to refactor
+            //There is a better approach to scale, design needs to be looked at
             //Project is small enough for this solution for now
             _dbContext.Users
                       .Include(s => s.Subscriptions)

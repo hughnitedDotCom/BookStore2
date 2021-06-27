@@ -65,6 +65,7 @@ namespace BookStore.Services.Services.BookService
              var result = await _bookRepository.AddAsync(book.ToEntity());
 
             return result != null ? result.ToViewModel() : null;
+
         }
 
         #endregion
