@@ -1,7 +1,6 @@
 ﻿using BookStore.Repository.Seed;
 using BookStore.Services.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Reflection;
 
 namespace BookStore.Repository
