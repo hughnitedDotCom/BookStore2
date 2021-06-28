@@ -15,22 +15,14 @@ export class NavBarComponent implements OnInit {
 
   user: string = "Guest";
 
-
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  // let dialogRef = dialog.open(UserProfileComponent, {
-  //   height: '400px',
-  //   width: '600px',
-  // });
-
   openDialog() {
-    const dialogRef = this.dialog.open(RegisterComponent, { width: "400px", restoreFocus: false});
-
-    // Manually restore focus to the menu trigger since the element that
-    // opens the dialog won't be in the DOM any more when the dialog closes.
+    const dialogRef = this.dialog.open(RegisterComponent, { width: "400px" , restoreFocus: false});
+ 
     dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus());
   }
 
